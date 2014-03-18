@@ -318,7 +318,8 @@ command :list do |c|
       next if task.complete? && !options.all && !options.complete
       next if !task.complete? && options.complete
 
-      say ' %s %2d. %-50s : %d minutes' % [task.complete? ? '✓' : ' ', i, task.to_s, task.length]
+      task_status = task.running ? '*' : task.complete ? '✓' : ''
+      say ' %s %2d. %-50s : %d minutes' % [task_status, i, task.to_s, task.length]
       total += task.length
     end
     say ' ' * 60 + '%d minutes' % total
